@@ -1,0 +1,30 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the maxSubarray function below.
+def maxSubarray(arr):
+    dp=[]
+    dp1=[]
+    for i in arr:
+        dp.append(i)
+        dp1.append(i)
+    maxe=dp[0]
+    for i in range(1,len(arr)):
+        if(dp[i-1]+dp[i]>dp[i]):
+            dp[i]=dp[i-1]+dp[i]
+        if dp[i]>maxe:
+            maxe=dp[i]
+    one=maxe
+    maxe=dp1[0]
+    for i in range(1,len(arr)):
+        if maxe+dp1[i]>dp1[i]:
+            dp1[i]=dp1[i]+maxe
+        if dp1[i]>maxe:
+            maxe=dp1[i]
+    two=maxe
+    return [one,two]
